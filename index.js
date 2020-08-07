@@ -1,3 +1,21 @@
+const express = require("express");
+const server = express();
+const port = 5000;
+const projectRouter = require("./routers/project-router");
+const actionRouter = require("./routers/action-router");
+server.use(express.json());
+
+server.use("/api/project", projectRouter);
+server.use("/api/actions", actionRouter);
+
+server.get("/", (req, res) => {
+  res.json({ message: "Welcome to my NODE API Sprint Server" });
+});
+
+server.listen(port, () => {
+  console.log("Server is running on port 5000");
+});
+
 /*
 play this: https://www.youtube.com/watch?v=d-diB65scQU
 
@@ -11,4 +29,6 @@ there is no data on that route, just write some code, you'll sort it out… don'
 I need this code, but don't know where, perhaps should make some middleware, don't worry, just hack it
 
 Go code!
+
+
 */

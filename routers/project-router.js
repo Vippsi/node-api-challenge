@@ -16,6 +16,20 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", validateProjectId, (req, res) => {
+  const { id } = req.params;
+  projectDb
+    .get(id)
+    .then((project) => {
+      res.status(200).json({ data: project });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({ error: "The projects information could not be retrieved." });
+    });
+});
+
 //Adds new project to DB
 router.post("/", validateProject, (req, res) => {
   projectDb
